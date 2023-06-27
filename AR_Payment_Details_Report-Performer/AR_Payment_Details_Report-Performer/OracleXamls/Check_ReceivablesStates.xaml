@@ -1,0 +1,362 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Check_ReceivablesStates" this:Check_ReceivablesStates.in_HomeMenuButton="Receivables" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_OracleURL" Type="InArgument(x:String)" />
+    <x:Property Name="in_HomeMenuButton" Type="InArgument(x:String)" />
+    <x:Property Name="out_ReceiptBatchNumber" Type="OutArgument(x:String)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+  </x:Members>
+  <this:Check_ReceivablesStates.in_OracleURL>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Check_ReceivablesStates.in_OracleURL>
+  <this:Check_ReceivablesStates.in_TransactionItem>
+    <InArgument x:TypeArguments="ui:QueueItem" />
+  </this:Check_ReceivablesStates.in_TransactionItem>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1019.07692307692,2637.78461538462</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Check_ReceivablesStates_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="34">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="70">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Check_ReceivablesStates" sap:VirtualizedContainerService.HintSize="1028.67692307692,2572.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Boolean" Name="bool_ReceivablesExist" />
+      <Variable x:TypeArguments="ui:BusinessRuleException" Name="BusinessException" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="986.584615384615,2481.23076923077" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: Monitor Processes - Scheduled Processes - Oracle Fusion Cloud Applications" sap:VirtualizedContainerService.HintSize="948.923076923077,2236.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="Never" ScopeGuid="1b118f00-0d8f-4fbc-90e7-d23da48d935a" Version="V1">
+          <uix:NApplicationCard.Body>
+            <ActivityAction x:TypeArguments="x:Object">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+              </ActivityAction.Argument>
+              <Sequence sap:VirtualizedContainerService.HintSize="914.953846153846,2019.69230769231" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:Click AlterIfDisabled="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="3000" DelayMS="3000" DisplayName="Clicking on HomeButton" sap:VirtualizedContainerService.HintSize="872.861538461538,106.338461538462" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+                  <ui:Click.CursorPosition>
+                    <ui:CursorPosition Position="Center">
+                      <ui:CursorPosition.OffsetX>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetX>
+                      <ui:CursorPosition.OffsetY>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetY>
+                    </ui:CursorPosition>
+                  </ui:Click.CursorPosition>
+                  <ui:Click.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="78f4d12b-77bd-4332-9ac4-0bd6e9a1cd19" InformativeScreenshot="191919249cb76a2860a45d2c50a715f0" Selector="&lt;webctrl aria-label='Home' aria-role='img' innertext='Home' /&gt;" WaitForReady="COMPLETE">
+                      <ui:Target.TimeoutMS>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:Target.TimeoutMS>
+                    </ui:Target>
+                  </ui:Click.Target>
+                </ui:Click>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="872.861538461538,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Clicked on Home Button&quot;]" />
+                <ui:UiElementExists DisplayName="MGM Custome Paas Application Element Exist?" Exists="[bool_ReceivablesExist]" sap:VirtualizedContainerService.HintSize="872.861538461538,106.338461538462" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+                  <ui:UiElementExists.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="61e47037-1402-4b4e-bdf1-204a2359b0b9" InformativeScreenshot="2abaf34a05e80616385575dffd1f9ff8" Selector="&lt;html app='chrome.exe' title='*Cloud Applications' /&gt;&lt;webctrl aaname='Receivables' innertext='Receivables' /&gt;" WaitForReady="COMPLETE">
+                      <ui:Target.TimeoutMS>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:Target.TimeoutMS>
+                    </ui:Target>
+                  </ui:UiElementExists.Target>
+                </ui:UiElementExists>
+                <If Condition="[bool_ReceivablesExist]" sap:VirtualizedContainerService.HintSize="872.861538461538,1501.29230769231" sap2010:WorkflowViewState.IdRef="If_1">
+                  <If.Then>
+                    <Sequence sap:VirtualizedContainerService.HintSize="837.415384615385,1313.72307692308" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="795.323076923077,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Clicking on Receivables&quot;]" />
+                      <ui:Click AlterIfDisabled="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="2000" DelayMS="2000" DisplayName="Clicking on Receivables" sap:VirtualizedContainerService.HintSize="795.323076923077,106.338461538462" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
+                        <ui:Click.CursorPosition>
+                          <ui:CursorPosition Position="Center">
+                            <ui:CursorPosition.OffsetX>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetX>
+                            <ui:CursorPosition.OffsetY>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetY>
+                          </ui:CursorPosition>
+                        </ui:Click.CursorPosition>
+                        <ui:Click.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5692c78b-397a-4524-9f08-60af010b69ef" InformativeScreenshot="9c5ead94fada5f02f43e1dfd8ec48858" Selector="&lt;html app='chrome.exe' title='*Cloud Applications' /&gt;&lt;webctrl aaname='Receivables' innertext='Receivables' /&gt;" WaitForReady="COMPLETE">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                          </ui:Target>
+                        </ui:Click.Target>
+                      </ui:Click>
+                      <ui:Click AlterIfDisabled="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="5000" DelayMS="2000" DisplayName="Clicking on Account Receivables" sap:VirtualizedContainerService.HintSize="795.323076923077,106.338461538462" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT">
+                        <ui:Click.CursorPosition>
+                          <ui:CursorPosition Position="Center">
+                            <ui:CursorPosition.OffsetX>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetX>
+                            <ui:CursorPosition.OffsetY>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetY>
+                          </ui:CursorPosition>
+                        </ui:Click.CursorPosition>
+                        <ui:Click.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b165a669-4134-4058-aff3-a61978053ac9" InformativeScreenshot="bd63066999dc843773a40bf0de4fecd5" Selector="&lt;html app='chrome.exe' title='*Cloud Applications' /&gt;&lt;webctrl aaname='Accounts Receivable' innertext='Accounts Receivable' /&gt;">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:Click.Target>
+                      </ui:Click>
+                      <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Getting Receipts Batches" sap:VirtualizedContainerService.HintSize="795.323076923077,106.338461538462" sap2010:WorkflowViewState.IdRef="GetValue_1">
+                        <ui:GetValue.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ee7b00cc-5531-4989-8d51-46964e54ba93" InformativeScreenshot="9bc4634f78df07c3391a2ae1c1390f44" Selector="&lt;webctrl aaname='*' tag='SPAN' class='Apps5XLargeFontSize text-red' /&gt;" WaitForReady="COMPLETE">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                          </ui:Target>
+                        </ui:GetValue.Target>
+                        <ui:GetValue.Value>
+                          <OutArgument x:TypeArguments="x:String">[out_ReceiptBatchNumber]</OutArgument>
+                        </ui:GetValue.Value>
+                      </ui:GetValue>
+                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="795.323076923077,50.9538461538462" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                        <ui:CommentOut.Body>
+                          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="375.876923076923,248.123076923077" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <uix:NGetText DisplayName="Get Text 'Receipt Batches'" sap:VirtualizedContainerService.HintSize="333.784615384615,156.553846153846" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="1b118f00-0d8f-4fbc-90e7-d23da48d935a" Version="V1">
+                              <uix:NGetText.Target>
+                                <uix:TargetAnchorable BrowserURL="https://eklu-dev5.fa.us2.oraclecloud.com/fscmUI/faces/FuseWelcome?_adf.ctrl-state=nbbgbn766_5&amp;fnd=%3B%3B%3B%3Bfalse%3B256%3B%3B%3B&amp;_afrLoop=10858776340887043#" DesignTimeRectangle="134, 370, 41, 83" ElementType="Text" FriendlyName="'0'" FullSelectorArgument="&lt;webctrl aaname='*' class='Apps6XLargeFontSize text-lightblue' innertext='*' /&gt;" FuzzySelectorArgument="&lt;webctrl class='Apps6XLargeFontSize text-lightblue' tag='SPAN' type='' /&gt;" Guid="bfb8e481-b30d-4457-aead-6105a888808b" ImageBase64="" InformativeScreenshot="7bc14be73655a003274cc6e7b1ef9964.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='1aj2nrebfm' title='Receipts - Accounts Receivable - Oracle Fusion Cloud Applications' /&gt;" SearchSteps="Selector">
+                                  <uix:TargetAnchorable.Anchors>
+                                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                      <uix:Target DesignTimeRectangle="42, 284, 163, 24" ElementType="Text" FriendlyName="'Receipt Batches'" FullSelectorArgument="&lt;webctrl aaname='Receipt Batches' innertext='Receipt Batches' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Receipt Batches' innertext='Receipt Batches' tag='SPAN' type='' check:text='Receipt Batches' /&gt;" ImageBase64="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" SearchSteps="Selector, Image" />
+                                    </scg:List>
+                                  </uix:TargetAnchorable.Anchors>
+                                </uix:TargetAnchorable>
+                              </uix:NGetText.Target>
+                              <uix:NGetText.Text>
+                                <OutArgument x:TypeArguments="x:String">[out_ReceiptBatchNumber]</OutArgument>
+                              </uix:NGetText.Text>
+                            </uix:NGetText>
+                          </Sequence>
+                        </ui:CommentOut.Body>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:CommentOut>
+                      <If Condition="[out_ReceiptBatchNumber.ToString.Trim.Contains(&quot;0&quot;)]" sap:VirtualizedContainerService.HintSize="795.323076923077,558.276923076923" sap2010:WorkflowViewState.IdRef="If_2">
+                        <If.Then>
+                          <Sequence sap:VirtualizedContainerService.HintSize="375.876923076923,186.092307692308" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Entire Process will close this Point Receipts Batches are zero, So the entire process done And the status of Queue will be change as Success&quot;]" />
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <Sequence sap:VirtualizedContainerService.HintSize="375.876923076923,399.507692307692" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[out_ReceiptBatchNumber.ToString+&quot; its not zero, So the process of uploading files needs to be done Manually&quot;]" />
+                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Send_Email workflow" sap:VirtualizedContainerService.HintSize="333.784615384615,111.507692307692" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Files\Send_Email.xaml">
+                              <ui:InvokeWorkflowFile.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_SendEmailSMTPSenderEmailAddress">[in_Config("str_SendEmail_SMTPEmailAddress").ToString]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_SendEmail_ToAddress">[in_Config("str_SendExceptionEmail_ToAddress").ToString]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_SendEmail_Subject">[in_Config("Oracle_ReceiptsNumber_MailSubject").ToString]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_SendEmail_Body">[in_Config("Oracle_ReceiptsBatch_MailBody").ToString]</InArgument>
+                                <InArgument x:TypeArguments="x:Int32" x:Key="in_SendEmail_Timeout" />
+                                <InArgument x:TypeArguments="x:String" x:Key="in_SendEmail_CCAddress">[in_Config("str_Success_CCAddress").ToString]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_SendEmailAttachment" />
+                                <InArgument x:TypeArguments="x:String" x:Key="in_SendEmailEmailAccountName">[in_Config("str_Email_AccountName").ToString]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_SendEmailSMTPServerAddress">[in_Config("SendEmail_SMTP_ServerAddress").ToString]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_SendEmailSMTPPortNumber">[in_Config("SendEmail_SMTP_PortNumber").ToString]</InArgument>
+                                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                              </ui:InvokeWorkflowFile.Arguments>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:InvokeWorkflowFile>
+                            <Throw Exception="[New BusinessRuleException(&quot;The Value in Lockbox Exception is &quot;+out_ReceiptBatchNumber.ToString       +&quot; So the process of uploading files needs to be done Manually&quot;+&quot; For &quot;+in_TransactionItem.SpecificContent(&quot;Property Code&quot;).ToString+&quot; And &quot;+in_TransactionItem.SpecificContent(&quot;Amount&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="333.784615384615,22.1538461538462" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                          </Sequence>
+                        </If.Else>
+                      </If>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_4">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </ActivityAction>
+          </uix:NApplicationCard.Body>
+          <uix:NApplicationCard.TargetApp>
+            <uix:TargetApp Area="-11, -11, 1942, 1042" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAC3SURBVDhPY3gro/KfEjycDPjg7vv/17ET/wmBnzt2/X9vYY9qAEjzv48fwQr+Pn4CNggbhqkB0e+0jBAGgCRB4MeqtXCTsWGQJpALkNWCDQABkKnIinFhkPOR1cMNALkCWSE+DAMgNtwAEEAOHFz4U2g0WO2fK9fAfLAB32fPhwuCFCBrQMafkzPhAfm1oQUsBjYAFDggzcQC5MAGGwDDXwrLUKINHYNiAKQGWQ+KAeTggTZA5T8AeeKZe/mBYcQAAAAASUVORK5CYII=" InformativeScreenshot="78142cfdca919d39f44c55093c7bc50d.png" Selector="&lt;html app='chrome.exe' htmlwindowname='*' title='*Cloud Applications' /&gt;" />
+          </uix:NApplicationCard.TargetApp>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </uix:NApplicationCard>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="952.615384615385,20.6769230769231" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Rethrow sap:VirtualizedContainerService.HintSize="200.123076923077,22.1538461538462" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+          </ActivityAction>
+        </Catch>
+        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="952.615384615385,20.6769230769231" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence sap:VirtualizedContainerService.HintSize="303.507692307692,209.723076923077" sap2010:WorkflowViewState.IdRef="Sequence_10">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign sap:VirtualizedContainerService.HintSize="261.415384615385,57.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="ui:BusinessRuleException">[BusinessException]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="ui:BusinessRuleException">[exception]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Rethrow sap:VirtualizedContainerService.HintSize="261.415384615385,22.1538461538462" sap2010:WorkflowViewState.IdRef="Rethrow_2" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>

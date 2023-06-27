@@ -1,0 +1,571 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Expedia_Login" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_UserName" Type="InArgument(x:String)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_Passwrod" Type="InArgument(ss:SecureString)" />
+  </x:Members>
+  <this:Expedia_Login.in_Passwrod>
+    <InArgument x:TypeArguments="ss:SecureString" />
+  </this:Expedia_Login.in_Passwrod>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1616.49230769231,4717.29230769231</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Expedia_Flow_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="35">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Net</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="35">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Expedia_Login" sap:VirtualizedContainerService.HintSize="1626.09230769231,4652.30769230769" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="Str_otpFromMail" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_VerificationPageExist" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_LoginPageExist" />
+      <Variable x:TypeArguments="s:Exception" Name="SystemException" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_ExpediaLogin" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_HomepageExist" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1584,4560.73846153846" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <Sequence sap:VirtualizedContainerService.HintSize="1546.33846153846,4336.98461538461" sap2010:WorkflowViewState.IdRef="Sequence_8">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1504.24615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Expedia Login Initilalised&quot;]" />
+          <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: Partner Central - Login" sap:VirtualizedContainerService.HintSize="1504.24615384615,4113.96923076923" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="IfNotOpen" ScopeGuid="62893eb2-6aa8-43d1-9121-2d3a353a1515" Version="V1" WindowResize="Maximize">
+            <uix:NApplicationCard.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                </ActivityAction.Argument>
+                <Sequence sap:VirtualizedContainerService.HintSize="1470.27692307692,3896.86153846154" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UiElementExists DisplayName="Sign In button Exist" Exists="[bool_LoginPageExist]" sap:VirtualizedContainerService.HintSize="1428.18461538462,106.338461538462" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+                    <ui:UiElementExists.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="609e1564-83b5-4b47-ba18-3a566a3e560a" InformativeScreenshot="dffce2ea552eb997a9896125637d9e85" Selector="&lt;webctrl aaname='             Sign in         ' id='signInButton' innertext='             Sign in         ' tag='BUTTON' type='submit' /&gt;" WaitForReady="COMPLETE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:UiElementExists.Target>
+                  </ui:UiElementExists>
+                  <If Condition="[bool_LoginPageExist]" sap:VirtualizedContainerService.HintSize="1428.18461538462,3204.18461538462" sap2010:WorkflowViewState.IdRef="If_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="1184.49230769231,3045.41538461538" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="ss:SecureString" Name="SecurePasswrod" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1142.4,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Sign-In button exist Bot will enter UserName and Password&quot;]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:LogMessage>
+                        <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Typing Into UserName" sap:VirtualizedContainerService.HintSize="1142.4,134.4" sap2010:WorkflowViewState.IdRef="TypeInto_2" Text="[in_Config(&quot;ExpediaUserName&quot;).ToString]">
+                          <ui:TypeInto.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4db12e4d-95ae-43d8-8289-95df7c667ef5" InformativeScreenshot="a3b451b18dc0d62644185679dbb24884" Selector="&lt;webctrl tag='INPUT' type='email' name='username' id='emailControl' /&gt;" WaitForReady="COMPLETE">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                            </ui:Target>
+                          </ui:TypeInto.Target>
+                        </ui:TypeInto>
+                        <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1142.4,50.9538461538462" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+                          <ui:CommentOut.Body>
+                            <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="303.507692307692,150.646153846154" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign sap:VirtualizedContainerService.HintSize="261.415384615385,59.0769230769231" sap2010:WorkflowViewState.IdRef="Assign_8">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="ss:SecureString">[in_Passwrod]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="ss:SecureString">[(New System.Net.NetworkCredential("",in_Config("ExpediaPassWord").ToString).SecurePassword)]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </ui:CommentOut.Body>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:CommentOut>
+                        <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'INPUT  passwordControl'" EmptyField="True" sap:VirtualizedContainerService.HintSize="1142.4,134.4" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="[in_Config(&quot;ExpediaPassWord&quot;).ToString]">
+                          <ui:TypeInto.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="879e1bb6-48d0-4a6d-8596-8b4d530b23b9" InformativeScreenshot="bc68a5e7d820fa503379e61f089fa76c" Selector="&lt;webctrl tag='INPUT' type='password' id='passwordControl' name='password' /&gt;" WaitForReady="COMPLETE">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                            </ui:Target>
+                          </ui:TypeInto.Target>
+                        </ui:TypeInto>
+                        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON  signInButton'" sap:VirtualizedContainerService.HintSize="1142.4,106.338461538462" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+                          <ui:Click.CursorPosition>
+                            <ui:CursorPosition Position="Center">
+                              <ui:CursorPosition.OffsetX>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetX>
+                              <ui:CursorPosition.OffsetY>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetY>
+                            </ui:CursorPosition>
+                          </ui:Click.CursorPosition>
+                          <ui:Click.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c9497900-bb80-464f-a95a-61487f1d93d9" InformativeScreenshot="df9c0e5000fa731ad6ebd908986f5815" Selector="&lt;webctrl aaname='             Sign in         ' id='signInButton' innertext='             Sign in         ' tag='BUTTON' type='submit' /&gt;" WaitForReady="COMPLETE">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                            </ui:Target>
+                          </ui:Click.Target>
+                        </ui:Click>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1142.4,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;UserName and Password entered and Bot logged into Expedia&quot;]" />
+                        <ui:Click AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" ContinueOnError="True" DelayBefore="5000" DisplayName="Clicking on Continue With EMail" sap:VirtualizedContainerService.HintSize="1142.4,106.338461538462" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+                          <ui:Click.CursorPosition>
+                            <ui:CursorPosition Position="Center">
+                              <ui:CursorPosition.OffsetX>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetX>
+                              <ui:CursorPosition.OffsetY>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetY>
+                            </ui:CursorPosition>
+                          </ui:Click.CursorPosition>
+                          <ui:Click.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1179f7f0-a15c-4229-b66a-5d888b510b64" InformativeScreenshot="f40ed7f6fee2b08982b38e9ac783e36c" Selector="&lt;html app='chrome.exe' title='*Login' /&gt;&lt;webctrl aaname='Continue with email' tag='BUTTON' type='button' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:Click.Target>
+                        </ui:Click>
+                        <uix:NCheckState DisplayName="Check App State 'Additional verification'" sap:VirtualizedContainerService.HintSize="1142.4,1855.01538461538" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="62893eb2-6aa8-43d1-9121-2d3a353a1515" Version="V1">
+                          <uix:NCheckState.IfExists>
+                            <Sequence sap:VirtualizedContainerService.HintSize="837.415384615385,1638.64615384615" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="x:Boolean" Name="bool_ExpediaOTPgen" />
+                              </Sequence.Variables>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="795.323076923077,50.9538461538462" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+                                <ui:CommentOut.Body>
+                                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="375.876923076923,711.138461538461" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <uix:NClick ClickType="Single" ContinueOnError="True" DelayBefore="3000" DisplayName="Click 'Don’t have'" sap:VirtualizedContainerService.HintSize="333.784615384615,156.553846153846" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="62893eb2-6aa8-43d1-9121-2d3a353a1515" Version="V1">
+                                      <uix:NClick.Target>
+                                        <uix:TargetAnchorable Accuracy="0.91" BrowserURL="https://www.expediapartnercentral.com/account/mfa/initiate?returnUrl=https%3A%2F%2Fwww.expediapartnercentral.com%2F" DesignTimeRectangle="1377, 736, 40, 40" FriendlyName="'SPAN'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;span&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;span' parentid='fallbacks-header' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='fallbacks-header' tag='SPAN' aaname='' /&gt;" Guid="e20bfd88-1d15-43f9-a317-6924920ce4a0" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAADGSURBVFhH7dNBCoJQFIXh1t0emtQOGjTJeVFraBZtJWcvTmiIGN37zglEzg8XRLy+D8RVmXkGshnIZiCbgWwGshnItkzgs227q3g1OygNPJ4uZbc/pA7Es9hpztfuTrwUELj1ZvueKLLH9XtZZAp4uz8+B0WQYxwG78iU/sRRpAKHqn6SX0gVDlUB0TekEoeqgWgKqcQhCojGyOGwOEQD0RRSgUMSIBoiVTgkAyLAlDgkBf4jA9kMZDOQzUA2A9kMZJs5sJQX+/+Kd6rVLyEAAAAASUVORK5CYII=" InformativeScreenshot="b251bd14961ff871fb65e403006d21a7.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Partner Central - Login' /&gt;" SearchSteps="Image" WaitForReadyArgument="Complete">
+                                          <uix:TargetAnchorable.Anchors>
+                                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                              <uix:Target DesignTimeRectangle="503, 737, 698, 28" ElementType="Text" FriendlyName="'Don’t have'" FullSelectorArgument="&lt;webctrl aaname='Don’t have access to the device? Choose another way to verify yourself' innertext='Don’t have access to the device? Choose another way to verify yourself' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Don’t have access to the device? Choose another way to verify yourself' innertext='Don’t have access to the device? Choose another way to verify yourself' tag='SPAN' type='' check:text='Don’t have access to the device? Choose another way to verify yourself' /&gt;" ImageBase64="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" SearchSteps="Selector, Image" />
+                                            </scg:List>
+                                          </uix:TargetAnchorable.Anchors>
+                                        </uix:TargetAnchorable>
+                                      </uix:NClick.Target>
+                                    </uix:NClick>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Bot will click on EMail me button in Expedia&quot;]" />
+                                    <uix:NClick ClickType="Single" ContinueOnError="True" DelayBefore="3000" DisplayName="Click 'Email me'" sap:VirtualizedContainerService.HintSize="333.784615384615,156.553846153846" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="62893eb2-6aa8-43d1-9121-2d3a353a1515" Version="V1">
+                                      <uix:NClick.Target>
+                                        <uix:TargetAnchorable BrowserURL="https://www.expediapartnercentral.com/account/mfa/initiate?returnUrl=https%3A%2F%2Fwww.expediapartnercentral.com%2F" DesignTimeRectangle="602, 906, 84, 28" ElementType="Text" FriendlyName="'Email me'" FullSelectorArgument="&lt;webctrl aaname='Email me' innertext='Email me' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Email me' innertext='Email me' tag='A' type='' check:text='Email me' /&gt;" Guid="38567bd0-2325-4ffd-8402-572baff7d5cd" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFgAAAAgCAYAAACW5L+YAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAMfSURBVGhD7ZitjxNBGIf3v6g8eRJZWbmGpAmmKCoQF1QVuQSFooakQVWRyuJqSDbBrCIViAbDGZImmGJIBaJBDc9vd2i2s7MHSTt07zK/ZHLdd+fjfZ9552MvMVFBFQEHVgQcWBFwYEXAgRUBB1YEHFgRcGBFwIEVAQfWnQG8+2xM76Exww/WIGFLUmP67+1zC3UAeIOjcripLG29c+heAR68Nmbypl7Wtl5rdFcBz79bQ9sVAQfWvQVsAxvzd0u5elo+dx4ZM+W50A9+vzDmArvepa+Muflp3znK3wLpcVlPpfuc/Z72B/LB9NkaVI1tnbMN4queL/B98a2ss/tKTCPiwJ6w3w+mxFe+qmnzqYy7qEuRz7mH21GAR+zLvSeA5ODJaNvHKdlnvB8DLGUvz3Bkzl850gG46/CSPhTMkGBUV/2k6of2q1+2knQiwGPGu3yGT0BeMLE6ODV+BtyB/MCW48cUYKrfxS9Xa/pSPCnxLKzPQzioH5fdUYATsmBZzUoyIZVdg7+zNqucDPb1vWJMN7N3H8sAroCw14kAJ2Ro9bD+M5bejfhd1UwrE2gHt6cvQKfuNWAPRAzXWhVOEnkB+4ovsJ4DUZppJnmXV7MPKRDZta38VUxCv2HMYwG7EA1+jrAn+O3ektbEpzbVpCgShUna2OeqVmS76lcnxAvYd03Tst/LBlabRTRn8IQlWLvS2TY+wDsC0DKbMG6fQC+1bKmbMO5ePpg+W4NuW51jjcXYrnxtJnbvvq1U6x99yLkqAPtmuKFN9rK064Ackh0T9sCMPb2H7b8Cro5l5WtT1NWBRnI1lU1l9Z4V8BaQstVWAuNri2glYK0uX3wNOivg4gaBrfYJzkHyAHsbAWccYrK5Z0yTWgF44dx5iz6wtxHwlpuNbh1d6u+sbS9uUQuSo6p/PuRUMnshPxVg/QNHV56OvUvnlBEHZJcsaesWIS3sHfkCX2fyG+gTfNZHlcvEC7ip7BvbwI4FLG3Zf4f2K04H3QgfdKtoM2DphncHX5/AnrpnCToAHHV6RcCBFQEHVgQcWBFwYEXAQWXMb6Y50lSXXYF/AAAAAElFTkSuQmCC" InformativeScreenshot="dbb75a0d9ee0b9d6da397f05dbe256ca.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Partner Central - Login' /&gt;" SearchSteps="Selector, Image" WaitForReadyArgument="Complete">
+                                          <uix:TargetAnchorable.Anchors>
+                                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                              <uix:Target Accuracy="0.9" DesignTimeRectangle="540, 863, 40, 40" FriendlyName="'SPAN'" FullSelectorArgument="&lt;webctrl parentid='list' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='list' tag='SPAN' type='' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAFrSURBVFhH7Ze/SwNBEIX9u+20DNgkFkELQcE64JX+QNGghaSyEtuAFkIq0415MStzm7fZbOYOrpgPXnM3O/tlkwl3e9JxXNCKC1pxQSsuaCUpeD1+lt7pmewf9VsN9rgZv6x2XYcKQo41azPYk0EFeyftn1wcnCSDCuqFb+8frQijJ3rra4ysIPiZz6W6va9dtwS90BPo64ytBAPTzy/pn1/W7pcEa9FDo+8zsoIXo0q+Z7PVnT8eXydyMBjW6jYFtVijQU/01nWMrCByeDyUJ7rB1VptHNSwD4iecS1jK8GQAfmKUkMUhkCDtegR14YwigRDqruH/x85iIdIDwFY3l+s0T1YGDsJIvjfYidET3hRy3rEYewsGMKGCLAhyIVhFkTiIUoNQS6MRgRDMACbhiAXRqOC1jBcsCQMFywJwwVLwqCCJY9STQUPFwwq2PmXJrB87WzhXSQO9kjJgaRgV3BBKy5oxQVtiPwCVyhvMMLT3AEAAAAASUVORK5CYII=" SearchSteps="Image" />
+                                            </scg:List>
+                                          </uix:TargetAnchorable.Anchors>
+                                        </uix:TargetAnchorable>
+                                      </uix:NClick.Target>
+                                    </uix:NClick>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Successfully clicked on Email Button&quot;]" />
+                                  </Sequence>
+                                </ui:CommentOut.Body>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:CommentOut>
+                              <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="795.323076923077,22.1538461538462" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="795.323076923077,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;OTP sent to Mail&quot;]" />
+                              <ui:RetryScope ContinueOnError="True" DisplayName="Retry Scope" sap:VirtualizedContainerService.HintSize="795.323076923077,50.9538461538462" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="5" RetryInterval="00:00:05">
+                                <ui:RetryScope.ActivityBody>
+                                  <ActivityAction>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="609.969230769231,460.8" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Read_OutLook_Email workflow" sap:VirtualizedContainerService.HintSize="566.4,111.507692307692" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Read_OutLook_Email.xaml">
+                                        <ui:InvokeWorkflowFile.Arguments>
+                                          <InArgument x:TypeArguments="x:String" x:Key="in_EmailAccount" />
+                                          <OutArgument x:TypeArguments="x:String" x:Key="out_OTPfromMail">[Str_otpFromMail]</OutArgument>
+                                          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                                        </ui:InvokeWorkflowFile.Arguments>
+                                      </ui:InvokeWorkflowFile>
+                                      <If Condition="[Str_otpFromMail.ToString IsNot Nothing]" sap:VirtualizedContainerService.HintSize="566.4,216.369230769231" sap2010:WorkflowViewState.IdRef="If_3">
+                                        <If.Then>
+                                          <Assign sap:VirtualizedContainerService.HintSize="261.415384615385,59.0769230769231" sap2010:WorkflowViewState.IdRef="Assign_9">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Boolean">[bool_ExpediaOTPgen]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                        </If.Then>
+                                        <If.Else>
+                                          <Assign sap:VirtualizedContainerService.HintSize="261.415384615385,59.0769230769231" sap2010:WorkflowViewState.IdRef="Assign_10">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Boolean">[bool_ExpediaOTPgen]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                        </If.Else>
+                                      </If>
+                                    </Sequence>
+                                  </ActivityAction>
+                                </ui:RetryScope.ActivityBody>
+                                <ui:RetryScope.Condition>
+                                  <ActivityFunc x:TypeArguments="x:Boolean">
+                                    <ui:CheckTrue ErrorMessage="{x:Null}" DisplayName="Check True" Expression="[bool_ExpediaOTPgen]" sap:VirtualizedContainerService.HintSize="333.784615384615,87.1384615384615" sap2010:WorkflowViewState.IdRef="CheckTrue_1" />
+                                  </ActivityFunc>
+                                </ui:RetryScope.Condition>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:RetryScope>
+                              <If Condition="[bool_ExpediaOTPgen]" sap:VirtualizedContainerService.HintSize="795.323076923077,1079.63076923077" sap2010:WorkflowViewState.IdRef="If_4">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If.Then>
+                                  <Sequence sap:VirtualizedContainerService.HintSize="375.876923076923,920.861538461538" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[&quot;Bot get the OTP which has sent to the Mail&quot;]" />
+                                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'INPUT'" sap:VirtualizedContainerService.HintSize="333.784615384615,134.4" sap2010:WorkflowViewState.IdRef="TypeInto_5" Text="[Str_otpFromMail.ToString]">
+                                      <ui:TypeInto.Target>
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0db95bf9-c7bc-448a-aeb4-0af4a1a9d77e" InformativeScreenshot="013806f3aa5fc8e455c503d3f01b54d0" Selector="&lt;html app='chrome.exe' title='Partner Central*' /&gt;&lt;webctrl tag='INPUT' name='passcode-input' /&gt;" WaitForReady="COMPLETE">
+                                          <ui:Target.TimeoutMS>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:Target.TimeoutMS>
+                                        </ui:Target>
+                                      </ui:TypeInto.Target>
+                                    </ui:TypeInto>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Info" Message="[&quot;OTP enter was success&quot;]" />
+                                    <uix:NClick ClickType="Single" DelayBefore="5000" DisplayName="Click 'VERIFY DEVICE'" sap:VirtualizedContainerService.HintSize="333.784615384615,156.553846153846" sap2010:WorkflowViewState.IdRef="NClick_4" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="62893eb2-6aa8-43d1-9121-2d3a353a1515" Version="V1">
+                                      <uix:NClick.Target>
+                                        <uix:TargetAnchorable Accuracy="0.95" BrowserURL="https://www.expediapartnercentral.com/account/mfa/initiate?methodId=de4f1e406d36b956bfa34bc9d3e2eed54851e15a&amp;returnUrl=https%3A%2F%2Fwww.expediapartnercentral.com%2F" DesignTimeRectangle="479, 558, 840, 102" FriendlyName="'VERIFY DEVICE'" FullSelectorArgument="&lt;webctrl innertext='VERIFY DEVICE' /&gt;" FuzzySelectorArgument="&lt;webctrl innertext='VERIFY DEVICE' tag='DIV' type='' aaname='' check:text='VERIFY DEVICE' /&gt;" Guid="c4a26b32-f4f1-4699-acb9-511f38067cd9" ImageBase64="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" InformativeScreenshot="a8fcdf2f2aa01cdb0cc13ced90604cf1.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Partner Central*' /&gt;" SearchSteps="Selector, Image" WaitForReadyArgument="Complete" />
+                                      </uix:NClick.Target>
+                                    </uix:NClick>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Info" Message="[&quot;Expedia Logon Was Successfull&quot;]" />
+                                    <Assign sap:VirtualizedContainerService.HintSize="333.784615384615,61.2923076923077" sap2010:WorkflowViewState.IdRef="Assign_11">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Boolean">[bool_ExpediaLogin]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                </If.Then>
+                                <If.Else>
+                                  <Sequence sap:VirtualizedContainerService.HintSize="375.876923076923,287.261538461538" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Info" Message="[&quot;OTP generation is not done, please check outlook connection with UIPath or Login to Expedia manually and retry the process&quot;]" />
+                                    <Assign sap:VirtualizedContainerService.HintSize="333.784615384615,61.2923076923077" sap2010:WorkflowViewState.IdRef="Assign_12">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Boolean">[bool_ExpediaLogin]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                </If.Else>
+                              </If>
+                              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="795.323076923077,50.9538461538462" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+                                <ui:CommentOut.Body>
+                                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="375.876923076923,1067.07692307692" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Read_OutLook_Email workflow" sap:VirtualizedContainerService.HintSize="333.784615384615,111.507692307692" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Read_OutLook_Email.xaml">
+                                      <ui:InvokeWorkflowFile.Arguments>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_EmailAccount" />
+                                        <OutArgument x:TypeArguments="x:String" x:Key="out_OTPfromMail">[Str_otpFromMail]</OutArgument>
+                                        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                                      </ui:InvokeWorkflowFile.Arguments>
+                                    </ui:InvokeWorkflowFile>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Bot get the OTP which has sent to the Mail&quot;]" />
+                                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'INPUT'" sap:VirtualizedContainerService.HintSize="333.784615384615,134.4" sap2010:WorkflowViewState.IdRef="TypeInto_4" Text="[Str_otpFromMail.ToString]">
+                                      <ui:TypeInto.Target>
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0db95bf9-c7bc-448a-aeb4-0af4a1a9d77e" InformativeScreenshot="013806f3aa5fc8e455c503d3f01b54d0" Selector="&lt;html app='chrome.exe' title='Partner Central*' /&gt;&lt;webctrl tag='INPUT' name='passcode-input' /&gt;" WaitForReady="COMPLETE">
+                                          <ui:Target.TimeoutMS>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:Target.TimeoutMS>
+                                        </ui:Target>
+                                      </ui:TypeInto.Target>
+                                    </ui:TypeInto>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;OTP enter was success&quot;]" />
+                                    <uix:NClick ClickType="Single" DelayBefore="5000" DisplayName="Click 'VERIFY DEVICE'" sap:VirtualizedContainerService.HintSize="333.784615384615,156.553846153846" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="62893eb2-6aa8-43d1-9121-2d3a353a1515" Version="V1">
+                                      <uix:NClick.Target>
+                                        <uix:TargetAnchorable Accuracy="0.95" BrowserURL="https://www.expediapartnercentral.com/account/mfa/initiate?methodId=de4f1e406d36b956bfa34bc9d3e2eed54851e15a&amp;returnUrl=https%3A%2F%2Fwww.expediapartnercentral.com%2F" DesignTimeRectangle="479, 558, 840, 102" FriendlyName="'VERIFY DEVICE'" FullSelectorArgument="&lt;webctrl innertext='VERIFY DEVICE' /&gt;" FuzzySelectorArgument="&lt;webctrl innertext='VERIFY DEVICE' tag='DIV' type='' aaname='' check:text='VERIFY DEVICE' /&gt;" Guid="c4a26b32-f4f1-4699-acb9-511f38067cd9" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAA0wAAABqCAYAAACPgNEBAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAdlSURBVHhe7d3fS91mGMDx/f9/wW6FXhQGBUGKpSBzIG1vZB1IBUFKi6ysw3WOMqmD7Im+ie85zXNOEo8XBz4fCN1ifpncvF/ywx/++vufpp0AAABYJJgAAAASggkAACAhmAAAABKCCQAAICGYAAAAEoIJAAAgIZgAAAASggkAACAhmAAAABKCCQAAICGYAAAAEoIJAAAgIZgAAAASggkAACAhmAAAABKCCQAAICGYAAAAEoIJAAAgIZgAAAASggkAACAhmAAAABKCCQAAICGYAAAAEoIJAAAgIZgAAAASggkAACAhmAAAABKCCQAAICGYAAAAEoIJAAAgIZgAAAASggkAACAhmAAAABKCCQAAICGYAAAAEoIJAAAgIZgAAAASggkAACAhmAAAABKCCQAAICGYAAAAEoIJAAAgIZgAAAASggkAACAhmAAAABKCCQAAICGYAAAAEtsVTHGYe3tN82NMBx/LvMTpwd1yO8dNc9PO+No0+2XdwenodpE7fw78vJ2exzbeNM35l7Jcrdr+Wb+hMGa//8bvU/7/p5Oy3rLL+FlZ5m389yqffqu2X01PXt4d/+lF01yXZZdl63bTcZybTV2HhfO05DKO8fCXpnka57zb99PY1mGcn6v/ykJjzm1ZFAAA5ti6O0ynP5fBcAz8s0F/PaC/HeC3pgyus2Cqpu9Codr+5GCKxfpQiUD4dLfmgosIjnr5VdZFz+0U+zkZCK9RwRQ2cR2GgukmYvSgiqShqV+v2tbgJJgAAHigrQumr+/vB8QfvpWZS67OyzJ1fKwZqC+ogqmOl5tY7/XL+21fdHc6Wtn2x+63iovXv5d5neoOVB8eK/TRE//24livYx/n75pmtwqS5e0NrjvgMa7DTRxLf2zx70Ec6+c45uvYfjtdReCdtHf4uvXGnlsAAJhp+95hqgbJhxdl3pLu7sfC421TBtdJMLVuIma6ny3ERrb9Cfvt7yK9Wrxr04dH/F5XZd4qa6MnjuNlFyZL2xwbTBu/DhF0xy/KviNKLyIS18q2BQAAG7KVH304j6C4HVh378XUqjs1C+/6TBlcrwimejubDqb6PaXT6pK8LSHx3Z2nxJjouf5YlompPk+jgyls8jr0URhT/buvNOXcAgDADFsZTPVgf+GxuNAPvCMyPpd5t6YMrlcEU73vhUfRsu1P2W/oIqS7K9Pe0dpp1x95d6k1KnrivB2V49qPc9aZEkybvA5nR2X5pbtrK008twAAMNVWBlP9Ts/yXZfuMbDdszKjUw2uh6aFu0VJMF1f3j/K9iyCYuGuSjZ4nziob9/jub3LFPtpI6T7fY5G3l1qjY2e7gt29XL9ukPT8kcUHngd6vPxusyr422taltD05j3vQAAYJXtDKbw4c3doLj/XHWregzsu8e6pgyuq2AamvbfDdwFSUJgzqC+j6STCI52uQl3l1pjg6m/qzM3mMJDrkN/nqp5++/LvDFmnFsAAJhia4Pp+qIMjJ/f3wXqv9w2FBhDA/XMimA6Sj5wkG5/xqC+fwyvTNlHFTJjg+m43C3bGQqmNet2NnIdvsXvWObNDaa11xQAAGbY2mCq38HpoqO7Y7I39FjXlMF1FUx9BEQYPCvzDoYG9dn2p+y30n3oof1i3MI7QCOMip7quOogmxpMm7oOXbwNfkAiM/PcAgDAWNsbTKH7DPftHZJ1g+cpg+uBYGrVf1fou21k25+y38rkcKmMWffqrCwT03n1Ce85+93Edeg/qR7n9sOYT4q31u0LAAAeaKuDqX907UUM+ruYyb6yNmVwnQRTq3u/aGf5fZ5s+1P2W3nMYLr+4/5u2d7SRxnm7Hcj1+Hy/pjac3uZ/DHcBTPPLQAAjLXVwdQ+Dva6PMq1W774dvCx/GzZlMH1imBqv2LXDewX3i3Ktj9lv5WNB1Ocq69fIviOm+ZJOZ4nETXL7xjN2u+GrkO/73aK7R2/j+OLcLou02Wc+5M3EWXdejPPLQAAjLXdwRT6R7nKtPC3kWrV4Dqb+jhaEUyt+vGxi25/2eB95qB+I8G0Yto/Gb4DtG7d7KMMc67D0Pn4HMdVf/BiaOrXq7aVTUPXDwAAxtr6YGrjph9gv0keA2tNGVyvCab27w8dljsqP/1aPlKQhUA2f43HCKZnB01zdNY0lyveEZobTHOuQ3Y+bmJ+eyds9+X9fts43X0V8y+qbVfbyibBBADAQ2x/MAEAADwSwQQAAJAQTAAAAAnBBAAAkBBMAAAACcEEAACQEEwAAAAJwQQAAJAQTAAAAAnBBAAAkBBMAAAACcEEAACQEEwAAAAJwQQAAJAQTAAAAAnBBAAAkBBMAAAACcEEAACQEEwAAAAJwQQAAJAQTAAAAAnBBAAAkBBMAAAACcEEAACQEEwAAAAJwQQAAJAQTAAAAAnBBAAAkBBMAAAACcEEAACQEEwAAAAJwQQAAJAQTAAAAAnBBAAAkBBMAAAACcEEAACQEEwAAAAJwQQAAJAQTAAAAAnBBAAAkBBMAAAACcEEAACQEEwAAACDmuZ/hJadp3WbQq0AAAAASUVORK5CYII=" InformativeScreenshot="a8fcdf2f2aa01cdb0cc13ced90604cf1.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Partner Central*' /&gt;" SearchSteps="Selector, Image" WaitForReadyArgument="Complete" />
+                                      </uix:NClick.Target>
+                                    </uix:NClick>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Expedia Logon Was Successfull&quot;]" />
+                                    <Assign sap:VirtualizedContainerService.HintSize="333.784615384615,59.0769230769231" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Boolean">[bool_ExpediaLogin]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                </ui:CommentOut.Body>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:CommentOut>
+                            </Sequence>
+                          </uix:NCheckState.IfExists>
+                          <uix:NCheckState.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.expediapartnercentral.com/account/mfa/initiate?methodId=de4f1e406d36b956bfa34bc9d3e2eed54851e15a&amp;returnUrl=https%3A%2F%2Fwww.expediapartnercentral.com%2F" DesignTimeRectangle="503, 292, 661, 36" ElementType="Text" FriendlyName="'Additional verification'" FullSelectorArgument="&lt;webctrl aaname='Additional verification required – check your*' innertext='Additional verification required – check your *' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Additional verification required – check your email' innertext='Additional verification required – check your email' tag='SPAN' type='' check:text='Additional verification required – check your email' /&gt;" Guid="cf58f254-5781-48d0-8d3b-3ad9920dd50b" ImageBase64="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" InformativeScreenshot="553c46b111eb47c7217178b05c352265.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Partner Central*' /&gt;" SearchSteps="Selector, Image" />
+                          </uix:NCheckState.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NCheckState>
+                        <Assign sap:VirtualizedContainerService.HintSize="1142.4,61.2923076923077" sap2010:WorkflowViewState.IdRef="Assign_4">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Boolean">[bool_ExpediaLogin]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap:VirtualizedContainerService.HintSize="200.123076923077,65.7230769230769" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;Sign-In button not exist so Login was already done&quot;]" />
+                        <Assign sap:VirtualizedContainerService.HintSize="333.784615384615,61.2923076923077" sap2010:WorkflowViewState.IdRef="Assign_3">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Boolean">[bool_ExpediaLogin]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                  <If Condition="[bool_ExpediaLogin]" DisplayName="If Expedia Login Successfull?" sap:VirtualizedContainerService.HintSize="968,412" sap2010:WorkflowViewState.IdRef="If_2">
+                    <If.Then>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[bool_ExpediaLogin.ToString+&quot; : Expedia Login was successfull bot will proceed further&quot;]" />
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap:VirtualizedContainerService.HintSize="376,250" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[bool_ExpediaLogin.ToString+&quot; : &quot;+in_Config(&quot;SE02&quot;).ToString]" />
+                        <Throw Exception="[New System.Exception(in_Config(&quot;SE02&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </ActivityAction>
+            </uix:NApplicationCard.Body>
+            <uix:NApplicationCard.TargetApp>
+              <uix:TargetApp Area="-11, -11, 1942, 1042" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="8442eaeee0b23a81e4cb73942bc38933.png" Selector="&lt;html app='chrome.exe' url='https://www.expediapartnercentral.com/' /&gt;" Url="[in_Config(&quot;ExpediaURL&quot;).ToString]" />
+            </uix:NApplicationCard.TargetApp>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </uix:NApplicationCard>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="1090.66666666667,21.3333333333333" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence sap:VirtualizedContainerService.HintSize="304,212.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_9">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign sap:VirtualizedContainerService.HintSize="262,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="s:Exception">[SystemException]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="s:Exception">[exception]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Rethrow sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>

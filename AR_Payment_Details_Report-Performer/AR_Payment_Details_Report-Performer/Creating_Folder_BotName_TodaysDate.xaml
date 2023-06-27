@@ -1,0 +1,945 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Creating_Folder_BotName_TodaysDate" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_YearFolderName" Type="InArgument(x:String)" />
+    <x:Property Name="in_FolderName" Type="InArgument(x:String)" />
+    <x:Property Name="in_BotNameFold" Type="InArgument(x:String)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_MonthFold" Type="InArgument(x:String)" />
+    <x:Property Name="in_DateandMonthFold" Type="InArgument(x:String)" />
+    <x:Property Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property Name="in_RecieptUploadPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_ReceiptsUploadFolderPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_CMDMUploadFolderPath" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:Creating_Folder_BotName_TodaysDate.in_YearFolderName>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Creating_Folder_BotName_TodaysDate.in_YearFolderName>
+  <this:Creating_Folder_BotName_TodaysDate.in_FolderName>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Creating_Folder_BotName_TodaysDate.in_FolderName>
+  <this:Creating_Folder_BotName_TodaysDate.in_MonthFold>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Creating_Folder_BotName_TodaysDate.in_MonthFold>
+  <this:Creating_Folder_BotName_TodaysDate.in_DateandMonthFold>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Creating_Folder_BotName_TodaysDate.in_DateandMonthFold>
+  <this:Creating_Folder_BotName_TodaysDate.in_RecieptUploadPath>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Creating_Folder_BotName_TodaysDate.in_RecieptUploadPath>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>3173.16923076923,4860.55384615385</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Creating_Folder_BotName_TodaysData_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="28">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="29">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Creating_Folder_BotName_TodaysData" sap:VirtualizedContainerService.HintSize="3182.76923076923,4795.56923076923" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Boolean" Name="bool_FolderExist" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_YearFolderExist" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_NameFoldExist" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_MonthFolderExist" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_PropertyCodeFolderExist" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_TodaysDateFolder" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="3140.67692307692,4704" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch.Try>
+        <Sequence sap:VirtualizedContainerService.HintSize="3103.01538461538,4480.98461538461" sap2010:WorkflowViewState.IdRef="Sequence_38">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence DisplayName="Receipts Upload Folder Path" sap:VirtualizedContainerService.HintSize="3060.92307692308,676.430769230769" sap2010:WorkflowViewState.IdRef="Sequence_19">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="434.215384615385,224.492307692308" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+              <ui:MultipleAssign.AssignOperations>
+                <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[in_YearFolderName]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[DateTime.Now.ToString("yyyy")]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[in_BotNameFold]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[in_Config("FolderBot").ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[in_MonthFold]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[DateTime.Now.ToString("MM_MMM")]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[in_DateandMonthFold]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[DateTime.Now.ToString("MM.dd")]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[in_ReceiptsUploadFolderPath]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[in_Config("ReceiptUploadFileFolder").ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                </scg:List>
+              </ui:MultipleAssign.AssignOperations>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:MultipleAssign>
+            <ui:FolderExistsX DisplayName="Folder Exists" Exists="[bool_FolderExist]" sap:VirtualizedContainerService.HintSize="434.215384615385,132.184615384615" sap2010:WorkflowViewState.IdRef="FolderExistsX_1" Path="[in_ReceiptsUploadFolderPath]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:FolderExistsX>
+            <If Condition="[bool_FolderExist]" DisplayName="If Folder Path Exists?" sap:VirtualizedContainerService.HintSize="434.215384615385,50.9538461538462" sap2010:WorkflowViewState.IdRef="If_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="661.661538461538,1208.86153846154" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="619.569230769231,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[in_FolderName+&quot; In this Path Oracle Reciepts Folder Exist&quot;]" />
+                  <ui:FolderExistsX DisplayName="Is Year folder Exist?" Exists="[bool_YearFolderExist]" sap:VirtualizedContainerService.HintSize="619.569230769231,132.184615384615" sap2010:WorkflowViewState.IdRef="FolderExistsX_2" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:FolderExistsX>
+                  <If Condition="[bool_YearFolderExist]" DisplayName="If Year Folder Exist?" sap:VirtualizedContainerService.HintSize="619.569230769231,813.784615384615" sap2010:WorkflowViewState.IdRef="If_2">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="200.123076923077,65.7230769230769" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="2095.75384615385,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[in_YearFolderName+&quot; Folder Exist&quot;]" />
+                        <ui:FolderExistsX DisplayName="Is Bot Name Folder Exists" Exists="[bool_NameFoldExist]" sap:VirtualizedContainerService.HintSize="2095.75384615385,132.184615384615" sap2010:WorkflowViewState.IdRef="FolderExistsX_3" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:FolderExistsX>
+                        <If Condition="[bool_NameFoldExist]" sap:VirtualizedContainerService.HintSize="2095.75384615385,1815.87692307692" sap2010:WorkflowViewState.IdRef="If_3">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <Sequence sap:VirtualizedContainerService.HintSize="1676.30769230769,1660.8" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1634.21538461538,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Year and Bot Name folders are Exist Checking for Next Folder&quot;]" />
+                              <ui:FolderExistsX DisplayName="Is Month Name Folder Exists" Exists="[bool_MonthFolderExist]" sap:VirtualizedContainerService.HintSize="1634.21538461538,132.184615384615" sap2010:WorkflowViewState.IdRef="FolderExistsX_4" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold]">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:FolderExistsX>
+                              <If Condition="[bool_MonthFolderExist]" DisplayName="If Month Name Fodler exist" sap:VirtualizedContainerService.HintSize="1634.21538461538,1265.72307692308" sap2010:WorkflowViewState.IdRef="If_4">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If.Then>
+                                  <Sequence sap:VirtualizedContainerService.HintSize="1214.76923076923,1110.64615384615" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1172.67692307692,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Year and Bot Name and Month folders are Exist Checking for Next Folder&quot;]" />
+                                    <ui:FolderExistsX DisplayName="Is Todays Date Name Folder Exists" Exists="[bool_TodaysDateFolder]" sap:VirtualizedContainerService.HintSize="1172.67692307692,132.184615384615" sap2010:WorkflowViewState.IdRef="FolderExistsX_5" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold+&quot;\&quot;+in_DateandMonthFold]">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:FolderExistsX>
+                                    <If Condition="[bool_TodaysDateFolder]" DisplayName="If Todays Date folder Exist?" sap:VirtualizedContainerService.HintSize="1172.67692307692,715.569230769231" sap2010:WorkflowViewState.IdRef="If_5">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <If.Then>
+                                        <Sequence sap:VirtualizedContainerService.HintSize="753.230769230769,560.492307692308" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="711.138461538461,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;Todays Folder exist in the required Path&quot;]">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </ui:LogMessage>
+                                          <ui:FolderExistsX DisplayName="Folder Exists" Exists="[bool_PropertyCodeFolderExist]" sap:VirtualizedContainerService.HintSize="711.138461538461,50.9538461538462" sap2010:WorkflowViewState.IdRef="FolderExistsX_15" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold+&quot;\&quot;+in_DateandMonthFold+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Property Code&quot;).ToString+&quot;-&quot;+in_TransactionItem.SpecificContent(&quot;Amount&quot;).ToString]">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </ui:FolderExistsX>
+                                          <If Condition="[bool_PropertyCodeFolderExist]" DisplayName="If Property Code and Amount Folders?" sap:VirtualizedContainerService.HintSize="711.138461538461,246.646153846154" sap2010:WorkflowViewState.IdRef="If_16">
+                                            <If.Then>
+                                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_31" Level="Info" Message="[&quot;All folders are already exist in the required Path&quot;]">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                              </ui:LogMessage>
+                                            </If.Then>
+                                            <If.Else>
+                                              <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_32" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold+&quot;\&quot;+in_DateandMonthFold+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Property Code&quot;).ToString+&quot;-&quot;+in_TransactionItem.SpecificContent(&quot;Amount&quot;).ToString]" />
+                                            </If.Else>
+                                          </If>
+                                        </Sequence>
+                                      </If.Then>
+                                      <If.Else>
+                                        <Sequence sap:VirtualizedContainerService.HintSize="375.876923076923,302.030769230769" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;Todays Date Folder r is not exist, Creating Folder \Today&quot;]" />
+                                          <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder with Month and Date" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_11" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold+&quot;\&quot;+in_DateandMonthFold+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Property Code&quot;).ToString+&quot;-&quot;+in_TransactionItem.SpecificContent(&quot;Amount&quot;).ToString]" />
+                                        </Sequence>
+                                      </If.Else>
+                                    </If>
+                                  </Sequence>
+                                </If.Then>
+                                <If.Else>
+                                  <Sequence sap:VirtualizedContainerService.HintSize="375.876923076923,420.923076923077" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Month Name folder is not exist, Creating Month \Today&quot;]" />
+                                    <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating folder with Month Name" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_8" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold]" />
+                                    <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder with Month and Date" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_10" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Property Code&quot;).ToString+&quot;-&quot;+in_TransactionItem.SpecificContent(&quot;Amount&quot;).ToString]" />
+                                  </Sequence>
+                                </If.Else>
+                              </If>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence sap:VirtualizedContainerService.HintSize="375.876923076923,539.815384615385" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Bot Name folder is not exist, Creating Folder Bot Name \ Month \Today&quot;]" />
+                              <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder with Bot Name" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_4" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold]" />
+                              <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating folder with Month Name" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_7" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold]" />
+                              <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder with Month and Date" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_9" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold+&quot;\&quot;+in_DateandMonthFold+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Property Code&quot;).ToString+&quot;-&quot;+in_TransactionItem.SpecificContent(&quot;Amount&quot;).ToString]" />
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap:VirtualizedContainerService.HintSize="375.876923076923,658.707692307692" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Creating Year \ Bot Name \Month \Date Folders&quot;]" />
+                        <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder With Years Name" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_2" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName]" />
+                        <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder with Bot Name" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_3" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold]" />
+                        <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating folder with Month Name" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_5" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold]" />
+                        <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder with Month and Date" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_6" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold+&quot;\&quot;+in_DateandMonthFold+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Property Code&quot;).ToString+&quot;-&quot;+in_TransactionItem.SpecificContent(&quot;Amount&quot;).ToString]" />
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="375.876923076923,245.169230769231" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[in_FolderName+&quot; : Withthis Path Folder is not Exist or dont have access&quot;]" />
+                  <Throw Exception="[New BusinessRuleException(in_Config(&quot;BE_ReceiptUploadFolder&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="333.784615384615,22.1538461538462" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                </Sequence>
+              </If.Else>
+            </If>
+            <Assign sap:VirtualizedContainerService.HintSize="434.215384615385,57.6" sap2010:WorkflowViewState.IdRef="Assign_3">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Object">[in_Config("ReceiptUploadStoreFolder")]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Object">[in_ReceiptsUploadFolderPath+"\"+in_YearFolderName+"\"+in_BotNameFold+"\"+in_MonthFold+"\"+in_DateandMonthFold+"\"+in_TransactionItem.SpecificContent("Property Code").ToString+"-"+in_TransactionItem.SpecificContent("Amount").ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+          <Sequence DisplayName="Credit and Debit Memos Upload Folder Path" sap:VirtualizedContainerService.HintSize="3060.92307692308,3673.10769230769" sap2010:WorkflowViewState.IdRef="Sequence_28">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="3018.83076923077,224.492307692308" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+              <ui:MultipleAssign.AssignOperations>
+                <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[in_YearFolderName]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[DateTime.Now.ToString("yyyy")]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[in_BotNameFold]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[in_Config("FolderBot").ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[in_MonthFold]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[DateTime.Now.ToString("MM_MMM")]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[in_DateandMonthFold]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[DateTime.Now.ToString("MM.dd")]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_12">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[in_CMDMUploadFolderPath]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[in_Config("CMDMFileFolder").ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                </scg:List>
+              </ui:MultipleAssign.AssignOperations>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:MultipleAssign>
+            <ui:FolderExistsX DisplayName="Folder Exists" Exists="[bool_FolderExist]" sap:VirtualizedContainerService.HintSize="3018.83076923077,132.184615384615" sap2010:WorkflowViewState.IdRef="FolderExistsX_6" Path="[in_CMDMUploadFolderPath]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:FolderExistsX>
+            <If Condition="[bool_FolderExist]" DisplayName="If Folder Path Exists?" sap:VirtualizedContainerService.HintSize="3018.83076923077,2956.8" sap2010:WorkflowViewState.IdRef="If_15">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="2599.38461538462,2801.72307692308" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="2557.29230769231,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_21" Level="Info" Message="[in_FolderName+&quot; In this Path Oracle Reciepts Folder Exist&quot;]" />
+                  <ui:FolderExistsX DisplayName="Is Year folder Exist?" Exists="[bool_YearFolderExist]" sap:VirtualizedContainerService.HintSize="2557.29230769231,132.184615384615" sap2010:WorkflowViewState.IdRef="FolderExistsX_11" Path="[in_CMDMUploadFolderPath+&quot;\&quot;+in_YearFolderName]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:FolderExistsX>
+                  <If Condition="[bool_YearFolderExist]" DisplayName="If Year Folder Exist?" sap:VirtualizedContainerService.HintSize="2557.29230769231,2406.64615384615" sap2010:WorkflowViewState.IdRef="If_14">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="2137.84615384615,2251.56923076923" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="2095.75384615385,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_22" Level="Info" Message="[in_YearFolderName+&quot; Folder Exist&quot;]" />
+                        <ui:FolderExistsX DisplayName="Is Bot Name Folder Exists" Exists="[bool_NameFoldExist]" sap:VirtualizedContainerService.HintSize="2095.75384615385,132.184615384615" sap2010:WorkflowViewState.IdRef="FolderExistsX_12" Path="[in_CMDMUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:FolderExistsX>
+                        <If Condition="[bool_NameFoldExist]" sap:VirtualizedContainerService.HintSize="2095.75384615385,1856.49230769231" sap2010:WorkflowViewState.IdRef="If_13">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <Sequence sap:VirtualizedContainerService.HintSize="1676.30769230769,1701.41538461538" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1634.21538461538,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_23" Level="Info" Message="[&quot;Year and Bot Name folders are Exist Checking for Next Folder&quot;]" />
+                              <ui:FolderExistsX DisplayName="Is Month Name Folder Exists" Exists="[bool_MonthFolderExist]" sap:VirtualizedContainerService.HintSize="1634.21538461538,132.184615384615" sap2010:WorkflowViewState.IdRef="FolderExistsX_13" Path="[in_CMDMUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold]">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:FolderExistsX>
+                              <If Condition="[bool_MonthFolderExist]" DisplayName="If Month Name Fodler exist" sap:VirtualizedContainerService.HintSize="1634.21538461538,1306.33846153846" sap2010:WorkflowViewState.IdRef="If_12">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If.Then>
+                                  <Sequence sap:VirtualizedContainerService.HintSize="1214.76923076923,1151.26153846154" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                                    <Sequence.Variables>
+                                      <Variable x:TypeArguments="x:Boolean" Name="bool_TodaysDateFolder" />
+                                    </Sequence.Variables>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1172.67692307692,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_24" Level="Info" Message="[&quot;Year and Bot Name and Month folders are Exist Checking for Next Folder&quot;]" />
+                                    <ui:FolderExistsX DisplayName="Is Todays Date Name Folder Exists" Exists="[bool_TodaysDateFolder]" sap:VirtualizedContainerService.HintSize="1172.67692307692,132.184615384615" sap2010:WorkflowViewState.IdRef="FolderExistsX_14" Path="[in_CMDMUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold+&quot;\&quot;+in_DateandMonthFold]">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:FolderExistsX>
+                                    <If Condition="[bool_TodaysDateFolder]" DisplayName="If Todays Date folder Exist?" sap:VirtualizedContainerService.HintSize="1172.67692307692,756.184615384615" sap2010:WorkflowViewState.IdRef="If_11">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <If.Then>
+                                        <Sequence sap:VirtualizedContainerService.HintSize="753.230769230769,601.107692307692" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="711.138461538461,50.9538461538462" sap2010:WorkflowViewState.IdRef="LogMessage_25" Level="Info" Message="[&quot;All folders are already exist in the required Path&quot;]">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </ui:LogMessage>
+                                          <ui:FolderExistsX DisplayName="Folder Exists" Exists="[bool_PropertyCodeFolderExist]" sap:VirtualizedContainerService.HintSize="711.138461538461,132.184615384615" sap2010:WorkflowViewState.IdRef="FolderExistsX_16" Path="[in_CMDMUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold+&quot;\&quot;+in_DateandMonthFold+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Property Code&quot;).ToString+&quot;-&quot;+in_TransactionItem.SpecificContent(&quot;Amount&quot;).ToString]">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </ui:FolderExistsX>
+                                          <If Condition="[bool_PropertyCodeFolderExist]" DisplayName="If Property Code and Amount Folders?" sap:VirtualizedContainerService.HintSize="711.138461538461,246.646153846154" sap2010:WorkflowViewState.IdRef="If_17">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <If.Then>
+                                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_32" Level="Info" Message="[&quot;All folders are already exist in the required Path&quot;]">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                              </ui:LogMessage>
+                                            </If.Then>
+                                            <If.Else>
+                                              <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_33" Path="[in_CMDMUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold+&quot;\&quot;+in_DateandMonthFold+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Property Code&quot;).ToString+&quot;-&quot;+in_TransactionItem.SpecificContent(&quot;Amount&quot;).ToString]" />
+                                            </If.Else>
+                                          </If>
+                                        </Sequence>
+                                      </If.Then>
+                                      <If.Else>
+                                        <Sequence sap:VirtualizedContainerService.HintSize="375.876923076923,302.030769230769" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_26" Level="Info" Message="[&quot;Todays Date Folder r is not exist, Creating Folder \Today&quot;]" />
+                                          <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder with Month and Date" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_22" Path="[in_CMDMUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold+&quot;\&quot;+in_DateandMonthFold+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Property Code&quot;).ToString+&quot;-&quot;+in_TransactionItem.SpecificContent(&quot;Amount&quot;).ToString]" />
+                                        </Sequence>
+                                      </If.Else>
+                                    </If>
+                                  </Sequence>
+                                </If.Then>
+                                <If.Else>
+                                  <Sequence sap:VirtualizedContainerService.HintSize="375.876923076923,420.923076923077" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_27" Level="Info" Message="[&quot;Month Name folder is not exist, Creating Month \Today&quot;]" />
+                                    <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating folder with Month Name" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_23" Path="[in_CMDMUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold]" />
+                                    <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder with Month and Date" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_24" Path="[in_CMDMUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold+&quot;\&quot;+in_DateandMonthFold+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Property Code&quot;).ToString+&quot;-&quot;+in_TransactionItem.SpecificContent(&quot;Amount&quot;).ToString]" />
+                                  </Sequence>
+                                </If.Else>
+                              </If>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence sap:VirtualizedContainerService.HintSize="375.876923076923,539.815384615385" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_28" Level="Info" Message="[&quot;Bot Name folder is not exist, Creating Folder Bot Name \ Month \Today&quot;]" />
+                              <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder with Bot Name" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_25" Path="[in_CMDMUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold]" />
+                              <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating folder with Month Name" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_26" Path="[in_CMDMUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold]" />
+                              <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder with Month and Date" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_27" Path="[in_CMDMUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold+&quot;\&quot;+in_DateandMonthFold+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Property Code&quot;).ToString+&quot;-&quot;+in_TransactionItem.SpecificContent(&quot;Amount&quot;).ToString]" />
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap:VirtualizedContainerService.HintSize="375.876923076923,658.707692307692" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_29" Level="Info" Message="[&quot;Creating Year \ Bot Name \Month \Date Folders&quot;]" />
+                        <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder With Years Name" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_28" Path="[in_CMDMUploadFolderPath+&quot;\&quot;+in_YearFolderName]" />
+                        <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder with Bot Name" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_29" Path="[in_CMDMUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold]" />
+                        <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating folder with Month Name" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_30" Path="[in_CMDMUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold]" />
+                        <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder with Month and Date" sap:VirtualizedContainerService.HintSize="333.784615384615,79.0153846153846" sap2010:WorkflowViewState.IdRef="CreateDirectory_31" Path="[in_CMDMUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold+&quot;\&quot;+in_DateandMonthFold+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Property Code&quot;).ToString+&quot;-&quot;+in_TransactionItem.SpecificContent(&quot;Amount&quot;).ToString]" />
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="375.876923076923,245.169230769231" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.784615384615,91.5692307692308" sap2010:WorkflowViewState.IdRef="LogMessage_30" Level="Info" Message="[in_CMDMUploadFolderPath.ToString+&quot; : Withthis Path Folder is not Exist or dont have access&quot;]" />
+                  <Throw Exception="[New BusinessRuleException(in_Config(&quot;BE_CMDMFolder&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="333.784615384615,22.1538461538462" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="3018.83076923077,50.9538461538462" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242.215384615385,142.523076923077" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If Condition="[bool_FolderExist]" DisplayName="If Folder Path Exists?" sap:VirtualizedContainerService.HintSize="200.123076923077,50.9538461538462" sap2010:WorkflowViewState.IdRef="If_10">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="2056,2550.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="2014,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[in_FolderName+&quot; In this Path Oracle Reciepts Folder Exist&quot;]" />
+                        <ui:FolderExistsX DisplayName="Is Year folder Exist?" Exists="[bool_YearFolderExist]" sap:VirtualizedContainerService.HintSize="2014,134" sap2010:WorkflowViewState.IdRef="FolderExistsX_7" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:FolderExistsX>
+                        <If Condition="[bool_YearFolderExist]" DisplayName="If Year Folder Exist?" sap:VirtualizedContainerService.HintSize="2014,2151.33333333333" sap2010:WorkflowViewState.IdRef="If_9">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <Sequence sap:VirtualizedContainerService.HintSize="1592,1989.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1550,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[in_YearFolderName+&quot; Folder Exist&quot;]" />
+                              <ui:FolderExistsX DisplayName="Is Bot Name Folder Exists" Exists="[bool_NameFoldExist]" sap:VirtualizedContainerService.HintSize="1550,134" sap2010:WorkflowViewState.IdRef="FolderExistsX_8" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold]">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:FolderExistsX>
+                              <If Condition="[bool_NameFoldExist]" sap:VirtualizedContainerService.HintSize="1550,1590" sap2010:WorkflowViewState.IdRef="If_8">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If.Then>
+                                  <Sequence sap:VirtualizedContainerService.HintSize="1128,1428" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1086,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[&quot;Year and Bot Name folders are Exist Checking for Next Folder&quot;]" />
+                                    <ui:FolderExistsX DisplayName="Is Month Name Folder Exists" Exists="[bool_MonthFolderExist]" sap:VirtualizedContainerService.HintSize="1086,134" sap2010:WorkflowViewState.IdRef="FolderExistsX_9" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold]">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:FolderExistsX>
+                                    <If Condition="[bool_MonthFolderExist]" DisplayName="If Month Name Fodler exist" sap:VirtualizedContainerService.HintSize="1086,1028.66666666667" sap2010:WorkflowViewState.IdRef="If_7">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <If.Then>
+                                        <Sequence sap:VirtualizedContainerService.HintSize="664,866.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                                          <Sequence.Variables>
+                                            <Variable x:TypeArguments="x:Boolean" Name="bool_TodaysDateFolder" />
+                                          </Sequence.Variables>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="622,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Info" Message="[&quot;Year and Bot Name and Month folders are Exist Checking for Next Folder&quot;]" />
+                                          <ui:FolderExistsX DisplayName="Is Todays Date Name Folder Exists" Exists="[bool_TodaysDateFolder]" sap:VirtualizedContainerService.HintSize="622,134" sap2010:WorkflowViewState.IdRef="FolderExistsX_10" Path="[in_ReceiptsUploadFolderPath+&quot;\&quot;+in_YearFolderName+&quot;\&quot;+in_BotNameFold+&quot;\&quot;+in_MonthFold+&quot;\&quot;+in_DateandMonthFold]">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </ui:FolderExistsX>
+                                          <If Condition="[bool_TodaysDateFolder]" DisplayName="If Todays Date folder Exist?" sap:VirtualizedContainerService.HintSize="622,467.333333333333" sap2010:WorkflowViewState.IdRef="If_6">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <If.Then>
+                                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Info" Message="[&quot;All folders are already exist in the required Path&quot;]">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                              </ui:LogMessage>
+                                            </If.Then>
+                                            <If.Else>
+                                              <Sequence sap:VirtualizedContainerService.HintSize="376,305.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Info" Message="[&quot;Todays Date Folder r is not exist, Creating Folder \Today&quot;]" />
+                                                <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder with Month and Date" sap:VirtualizedContainerService.HintSize="334,80" sap2010:WorkflowViewState.IdRef="CreateDirectory_12" Path="[in_DateandMonthFold]" />
+                                              </Sequence>
+                                            </If.Else>
+                                          </If>
+                                        </Sequence>
+                                      </If.Then>
+                                      <If.Else>
+                                        <Sequence sap:VirtualizedContainerService.HintSize="376,425.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Info" Message="[&quot;Month Name folder is not exist, Creating Month \Today&quot;]" />
+                                          <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating folder with Month Name" sap:VirtualizedContainerService.HintSize="334,80" sap2010:WorkflowViewState.IdRef="CreateDirectory_13" Path="[in_MonthFold]" />
+                                          <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder with Month and Date" sap:VirtualizedContainerService.HintSize="334,80" sap2010:WorkflowViewState.IdRef="CreateDirectory_14" Path="[in_DateandMonthFold]" />
+                                        </Sequence>
+                                      </If.Else>
+                                    </If>
+                                  </Sequence>
+                                </If.Then>
+                                <If.Else>
+                                  <Sequence sap:VirtualizedContainerService.HintSize="376,545.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_18" Level="Info" Message="[&quot;Bot Name folder is not exist, Creating Folder Bot Name \ Month \Today&quot;]" />
+                                    <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder with Bot Name" sap:VirtualizedContainerService.HintSize="334,80" sap2010:WorkflowViewState.IdRef="CreateDirectory_15" Path="[in_BotNameFold]" />
+                                    <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating folder with Month Name" sap:VirtualizedContainerService.HintSize="334,80" sap2010:WorkflowViewState.IdRef="CreateDirectory_16" Path="[in_MonthFold]" />
+                                    <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder with Month and Date" sap:VirtualizedContainerService.HintSize="334,80" sap2010:WorkflowViewState.IdRef="CreateDirectory_17" Path="[in_DateandMonthFold]" />
+                                  </Sequence>
+                                </If.Else>
+                              </If>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence sap:VirtualizedContainerService.HintSize="376,665.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_19" Level="Info" Message="[&quot;Creating Year \ Bot Name \Month \Date Folders&quot;]" />
+                              <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder With Years Name" sap:VirtualizedContainerService.HintSize="334,80" sap2010:WorkflowViewState.IdRef="CreateDirectory_18" Path="[in_YearFolderName]" />
+                              <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder with Bot Name" sap:VirtualizedContainerService.HintSize="334,80" sap2010:WorkflowViewState.IdRef="CreateDirectory_19" Path="[in_BotNameFold]" />
+                              <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating folder with Month Name" sap:VirtualizedContainerService.HintSize="334,80" sap2010:WorkflowViewState.IdRef="CreateDirectory_20" Path="[in_MonthFold]" />
+                              <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Creating Folder with Month and Date" sap:VirtualizedContainerService.HintSize="334,80" sap2010:WorkflowViewState.IdRef="CreateDirectory_21" Path="[in_DateandMonthFold]" />
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_20" Level="Info" Message="[in_FolderName+&quot; : Withthis Path Folder is not Exist or dont have access&quot;]" />
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CommentOut>
+            <Assign sap:VirtualizedContainerService.HintSize="3018.83076923077,57.6" sap2010:WorkflowViewState.IdRef="Assign_4">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Object">[in_Config("CMDMUploadFileFolder")]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Object">[in_CMDMUploadFolderPath+"\"+in_YearFolderName+"\"+in_BotNameFold+"\"+in_MonthFold+"\"+in_DateandMonthFold+"\"+in_TransactionItem.SpecificContent("Property Code").ToString+"-"+in_TransactionItem.SpecificContent("Amount").ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="3106.70769230769,20.6769230769231" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>
